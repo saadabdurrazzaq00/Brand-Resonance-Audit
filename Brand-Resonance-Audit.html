@@ -1,0 +1,1208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+    <title>Brand Resonance Audit | Complete 10-Brand Intelligence</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --bg-deep: #020617;
+            --bg-card: rgba(15, 23, 42, 0.65);
+            --text-primary: #f8fafc;
+            --text-secondary: #cbd5e1;
+            --text-muted: #64748b;
+            --accent-gold: #f59e0b;
+            --accent-cyan: #22d3ee;
+            --accent-purple: #a78bfa;
+            --accent-emerald: #34d399;
+            --accent-rose: #fb7185;
+            --border-subtle: rgba(148, 163, 184, 0.12);
+            --border-glow: rgba(168, 85, 247, 0.5);
+            --glass-blur: blur(24px);
+            --radius-xl: 28px;
+            --radius-lg: 20px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+            --transition-smooth: cubic-bezier(0.22, 1, 0.36, 1);
+            /* Rating colors */
+            --rating-excellent: #22c55e;
+            --rating-very-high: #4ade80;
+            --rating-high: #a3e635;
+            --rating-good: #facc15;
+            --rating-moderate: #fb923c;
+            --rating-low: #f87171;
+            --rating-risk: #ef4444;
+            --rating-challenging: #dc2626;
+            --rating-weak: #b91c1c;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', system-ui, -apple-system, sans-serif;
+            background: var(--bg-deep);
+            color: var(--text-primary);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            line-height: 1.5;
+        }
+
+        #bg-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+            pointer-events: none;
+        }
+
+        .container {
+            position: relative;
+            z-index: 2;
+            max-width: 1300px;
+            margin: 0 auto;
+            padding: 60px 28px 100px;
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .header-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 26px;
+            background: rgba(168, 85, 247, 0.12);
+            border: 1px solid rgba(168, 85, 247, 0.3);
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.07em;
+            text-transform: uppercase;
+            color: #c4b5fd;
+            margin-bottom: 24px;
+            backdrop-filter: var(--glass-blur);
+            box-shadow: 0 4px 20px rgba(139, 92, 246, 0.2);
+        }
+
+        .header-badge .badge-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: #a78bfa;
+            animation: pulse-dot 2s infinite;
+        }
+
+        @keyframes pulse-dot {
+            0%, 100% { opacity: 1; box-shadow: 0 0 6px #a78bfa; }
+            50% { opacity: 0.4; box-shadow: 0 0 15px #a78bfa; }
+        }
+
+        .header h1 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(3rem, 8vw, 5.2rem);
+            font-weight: 700;
+            line-height: 1.05;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #ffffff 0%, #e2e8f0 35%, #b9a9ff 70%, #f8fafc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 16px;
+            filter: drop-shadow(0 8px 15px rgba(139, 92, 246, 0.3));
+        }
+
+        .header .subtitle {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 1.15rem;
+            font-weight: 500;
+            color: #67e8f9;
+            background: rgba(6, 182, 212, 0.1);
+            display: inline-block;
+            padding: 8px 26px;
+            border-radius: 40px;
+            letter-spacing: 0.02em;
+            border: 1px solid rgba(34, 211, 238, 0.2);
+        }
+
+        /* Intro */
+        .intro-section {
+            background: var(--bg-card);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 48px 44px;
+            margin-bottom: 70px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 25px 50px -15px rgba(0, 0, 0, 0.6);
+        }
+
+        .intro-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle at 30% 25%, rgba(139, 92, 246, 0.06) 0%, transparent 50%),
+                radial-gradient(circle at 70% 75%, rgba(6, 182, 212, 0.06) 0%, transparent 50%);
+            pointer-events: none;
+        }
+
+        .intro-section p {
+            font-size: 1.1rem;
+            line-height: 1.85;
+            color: var(--text-secondary);
+            margin-bottom: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-section .highlight {
+            background: linear-gradient(120deg, #fbbf24 0%, #f59e0b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: 800;
+            padding: 0 2px;
+        }
+
+        .intro-section ul {
+            list-style: none;
+            padding: 0;
+            margin: 28px 0 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .intro-section ul li {
+            background: rgba(168, 85, 247, 0.08);
+            border: 1px solid rgba(168, 85, 247, 0.25);
+            padding: 12px 24px;
+            border-radius: 100px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #ddd6fe;
+            letter-spacing: 0.02em;
+            backdrop-filter: blur(8px);
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .intro-section ul li:hover {
+            background: rgba(168, 85, 247, 0.18);
+            border-color: rgba(168, 85, 247, 0.5);
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(139, 92, 246, 0.2);
+        }
+
+        /* Brand Card */
+        .brand-section {
+            margin-bottom: 65px;
+            scroll-margin-top: 40px;
+        }
+
+        .brand-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2.5rem;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+            margin-bottom: 24px;
+            display: flex;
+            align-items: baseline;
+            flex-wrap: wrap;
+            gap: 15px;
+            color: #f1f5f9;
+        }
+
+        .brand-section h2 .domain-hint {
+            font-size: 0.85rem;
+            font-weight: 500;
+            color: #94a3b8;
+            font-family: 'Inter', sans-serif;
+            letter-spacing: 0.01em;
+            background: rgba(148, 163, 184, 0.12);
+            padding: 7px 18px;
+            border-radius: 100px;
+            border: 1px solid rgba(148, 163, 184, 0.15);
+        }
+
+        .brand-card {
+            background: var(--bg-card);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid var(--border-subtle);
+            border-radius: var(--radius-xl);
+            padding: 40px;
+            transition: all 0.5s var(--transition-smooth);
+            position: relative;
+            overflow: visible;
+            box-shadow: 0 20px 45px -18px rgba(0, 0, 0, 0.5);
+        }
+
+        .brand-card:hover {
+            border-color: var(--border-glow);
+            box-shadow: 0 0 80px rgba(139, 92, 246, 0.2), 0 25px 50px -15px rgba(0, 0, 0, 0.6);
+            transform: translateY(-4px);
+        }
+
+        .brand-card .card-glow {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at 25% 30%, rgba(192, 132, 252, 0.07) 0%, transparent 55%);
+            pointer-events: none;
+            border-radius: var(--radius-xl);
+        }
+
+        .brand-card .quick-meta {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 16px;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .meta-pill {
+            padding: 10px 22px;
+            border-radius: 100px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            backdrop-filter: blur(12px);
+            transition: all 0.3s;
+        }
+
+        .meta-pill.tagline-pill {
+            background: rgba(251, 191, 36, 0.18);
+            border: 1px solid rgba(251, 191, 36, 0.4);
+            color: #fde047;
+        }
+
+        .meta-pill.identity-pill {
+            background: rgba(34, 211, 238, 0.15);
+            border: 1px solid rgba(34, 211, 238, 0.4);
+            color: #67e8f9;
+        }
+
+        .brand-card .insight-block {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 20px;
+            margin-bottom: 36px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .insight-item {
+            background: rgba(15, 23, 42, 0.55);
+            border-radius: var(--radius-md);
+            padding: 24px;
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            backdrop-filter: blur(8px);
+            transition: all 0.3s;
+        }
+
+        .insight-item:hover {
+            border-color: rgba(168, 85, 247, 0.3);
+            background: rgba(30, 41, 59, 0.6);
+        }
+
+        .insight-item .insight-label {
+            font-size: 0.7rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: #a78bfa;
+            margin-bottom: 12px;
+        }
+
+        .insight-item .insight-value {
+            font-size: 1rem;
+            line-height: 1.65;
+            color: #e2e8f0;
+            font-weight: 500;
+        }
+
+        /* Metrics Toggle */
+        .metrics-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            cursor: pointer;
+            font-size: 0.85rem;
+            font-weight: 700;
+            color: #22d3ee;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            user-select: none;
+            background: rgba(6, 182, 212, 0.08);
+            padding: 10px 20px;
+            border-radius: 30px;
+            width: fit-content;
+            transition: all 0.3s;
+            border: 1px solid rgba(34, 211, 238, 0.2);
+        }
+
+        .metrics-toggle:hover {
+            background: rgba(6, 182, 212, 0.18);
+            border-color: rgba(34, 211, 238, 0.5);
+            box-shadow: 0 0 25px rgba(34, 211, 238, 0.2);
+        }
+
+        .metrics-toggle .arrow {
+            transition: transform 0.4s var(--transition-smooth);
+            font-size: 1.2rem;
+            display: inline-block;
+        }
+
+        .metrics-toggle.open .arrow {
+            transform: rotate(180deg);
+        }
+
+        /* Metrics Grid */
+        .metrics-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 14px;
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.7s var(--transition-smooth), opacity 0.5s var(--transition-smooth), margin 0.5s var(--transition-smooth);
+            position: relative;
+            z-index: 2;
+        }
+
+        .metrics-grid.expanded {
+            max-height: 3000px;
+            opacity: 1;
+            margin-top: 16px;
+            margin-bottom: 20px;
+            overflow: visible;
+        }
+
+        .metric-chip {
+            background: rgba(15, 23, 42, 0.7);
+            border: 1px solid rgba(148, 163, 184, 0.1);
+            border-radius: var(--radius-sm);
+            padding: 18px 16px;
+            cursor: pointer;
+            transition: all 0.3s var(--transition-smooth);
+            position: relative;
+            backdrop-filter: blur(4px);
+            overflow: visible;
+            z-index: 1;
+        }
+
+        .metric-chip:hover {
+            border-color: #a78bfa;
+            background: rgba(30, 41, 59, 0.85);
+            transform: translateY(-3px);
+            box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+            z-index: 100;
+        }
+
+        .metric-chip .metric-name {
+            font-size: 0.68rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.07em;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .metric-chip .metric-value {
+            font-size: 0.88rem;
+            font-weight: 600;
+            line-height: 1.45;
+        }
+
+        /* Rating color classes */
+        .rating-excellent { color: #22c55e; }
+        .rating-very-high { color: #4ade80; }
+        .rating-high { color: #a3e635; }
+        .rating-good { color: #facc15; }
+        .rating-moderate { color: #fb923c; }
+        .rating-low { color: #f87171; }
+        .rating-risk { color: #ef4444; }
+        .rating-challenging { color: #dc2626; }
+        .rating-weak { color: #b91c1c; }
+        .rating-caution { color: #f97316; }
+        .rating-check { color: #fbbf24; }
+        .rating-variable { color: #f59e0b; }
+        .rating-crowded { color: #f87171; }
+        .rating-safe { color: #4ade80; }
+        .rating-positive { color: #22c55e; }
+        .rating-neutral { color: #94a3b8; }
+        .rating-limited { color: #f87171; }
+        .rating-competitive { color: #fb923c; }
+        .rating-difficult { color: #ef4444; }
+
+        /* Tooltip */
+        .metric-chip .tooltip-hover {
+            position: absolute;
+            bottom: calc(100% + 16px);
+            left: 50%;
+            transform: translateX(-50%) translateY(10px);
+            background: #0f172a;
+            border: 1px solid #a78bfa;
+            padding: 14px 18px;
+            border-radius: 14px;
+            font-size: 0.75rem;
+            color: #f1f5f9;
+            width: max-content;
+            min-width: 220px;
+            max-width: 300px;
+            text-align: left;
+            opacity: 0;
+            pointer-events: none;
+            transition: all 0.35s ease;
+            z-index: 200;
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.8);
+            white-space: normal;
+            line-height: 1.6;
+            font-weight: 400;
+        }
+
+        .metric-chip .tooltip-hover strong {
+            color: #a78bfa;
+            font-weight: 700;
+        }
+
+        .metric-chip .tooltip-hover::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 8px solid transparent;
+            border-top-color: #a78bfa;
+        }
+
+        .metric-chip:hover .tooltip-hover {
+            opacity: 1;
+            transform: translateX(-50%) translateY(0);
+            pointer-events: auto;
+        }
+
+        /* Summary */
+        .summary-section {
+            background: rgba(15, 23, 42, 0.55);
+            backdrop-filter: var(--glass-blur);
+            border: 1px solid rgba(148, 163, 184, 0.15);
+            border-radius: var(--radius-xl);
+            padding: 48px 44px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 20px 45px -15px rgba(0, 0, 0, 0.5);
+        }
+
+        .summary-section h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 28px;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .summary-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(190px, 1fr));
+            gap: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .summary-category {
+            background: rgba(15, 23, 42, 0.5);
+            border-radius: var(--radius-md);
+            padding: 22px;
+            border-left: 5px solid;
+            transition: all 0.3s;
+            cursor: default;
+        }
+
+        .summary-category .cat-label {
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.06em;
+            margin-bottom: 10px;
+        }
+
+        .summary-category .cat-names {
+            font-size: 0.95rem;
+            color: #cbd5e1;
+            line-height: 1.8;
+            font-weight: 500;
+        }
+
+        /* Recommendation */
+        .recommendation {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.12) 0%, rgba(6, 182, 212, 0.08) 100%);
+            border: 1px solid rgba(168, 85, 247, 0.35);
+            border-radius: var(--radius-xl);
+            padding: 48px 40px;
+            margin-bottom: 50px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .recommendation h2 {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: 2rem;
+            margin-bottom: 24px;
+            letter-spacing: -0.02em;
+            position: relative;
+            z-index: 1;
+        }
+
+        .rec-names {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 18px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .rec-chip {
+            padding: 16px 36px;
+            border-radius: 60px;
+            font-weight: 700;
+            font-size: 1.35rem;
+            letter-spacing: -0.01em;
+            border: 2px solid;
+            cursor: default;
+            transition: all 0.4s;
+        }
+
+        .rec-chip.gold { background: rgba(245,158,11,0.18); border-color: rgba(251,191,36,0.55); color: #fde047; }
+        .rec-chip.purple { background: rgba(139,92,246,0.18); border-color: rgba(168,85,247,0.55); color: #ddd6fe; }
+        .rec-chip.cyan { background: rgba(6,182,212,0.18); border-color: rgba(34,211,238,0.55); color: #a5f3fc; }
+
+        /* Conclusion */
+        .conclusion {
+            text-align: center;
+            padding: 60px 20px;
+            position: relative;
+        }
+
+        .conclusion .big-line {
+            font-family: 'Space Grotesk', sans-serif;
+            font-size: clamp(2rem, 5vw, 2.8rem);
+            font-weight: 700;
+            letter-spacing: -0.03em;
+            background: linear-gradient(135deg, #f8fafc 0%, #a5b4fc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 12px;
+        }
+
+        .conclusion .sub-line {
+            font-size: 1.15rem;
+            color: #94a3b8;
+            margin-bottom: 8px;
+        }
+
+        .conclusion .sub-line-small {
+            font-size: 0.95rem;
+            color: #64748b;
+        }
+
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #020617; }
+        ::-webkit-scrollbar-thumb { background: rgba(148,163,184,0.2); border-radius: 100px; }
+
+        @media (max-width: 768px) {
+            .container { padding: 40px 16px 80px; }
+            .header h1 { font-size: 2.5rem; }
+            .brand-card { padding: 24px; }
+            .intro-section { padding: 32px 24px; }
+            .metrics-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); }
+            .metric-chip .tooltip-hover { min-width: 180px; max-width: 240px; font-size: 0.7rem; }
+        }
+    </style>
+</head>
+<body>
+
+    <canvas id="bg-canvas"></canvas>
+
+    <div class="container">
+        <div class="header">
+            <div class="header-badge">
+                <span class="badge-dot"></span> Complete 10-Brand Resonance Audit
+            </div>
+            <h1>Brand Resonance<br>Audit</h1>
+            <p class="subtitle">AI Taxi Dispatch & Chatbot System for Operators</p>
+        </div>
+
+        <div class="intro-section">
+            <p>This platform is not just software. It is a <span class="highlight">revenue engine</span> for operators who refuse to surrender their margins to aggregators.</p>
+            <p>Your product gives taxi businesses the power to launch their own branded booking system, capture direct customers, and build <span class="highlight">true independence</span>.</p>
+            <p>So the brand must do three things clearly:</p>
+            <ul>
+                <li>⚡ Signal intelligence & automation</li>
+                <li>🎯 Speak directly to operators, not passengers</li>
+                <li>📈 Promise growth, speed & independence</li>
+            </ul>
+        </div>
+
+        <div id="brands-container"></div>
+
+        <div class="summary-section">
+            <h2>📊 Strategic Clusters</h2>
+            <div class="summary-grid">
+                <div class="summary-category" style="border-left-color: #a78bfa;"><div class="cat-label" style="color:#c4b5fd;">Premium & Intelligent</div><div class="cat-names">CabIQ, FareIQ</div></div>
+                <div class="summary-category" style="border-left-color: #fbbf24;"><div class="cat-label" style="color:#fde047;">Revenue-Focused</div><div class="cat-names">FareIQ, Fare AI</div></div>
+                <div class="summary-category" style="border-left-color: #34d399;"><div class="cat-label" style="color:#6ee7b7;">Speed & Action</div><div class="cat-names">Go Cab, Jiffy Cab, Swift Cabs</div></div>
+                <div class="summary-category" style="border-left-color: #fb7185;"><div class="cat-label" style="color:#fda4af;">Emotional & Friendly</div><div class="cat-names">Cabbie, Fleet Genie</div></div>
+                <div class="summary-category" style="border-left-color: #22d3ee;"><div class="cat-label" style="color:#67e8f9;">Scalable & Brandable</div><div class="cat-names">Asta</div></div>
+                <div class="summary-category" style="border-left-color: #e2e8f0;"><div class="cat-label" style="color:#cbd5e1;">Functional & Clear</div><div class="cat-names">Dispatchly</div></div>
+            </div>
+        </div>
+
+        <div class="recommendation">
+            <h2>🏆 Top Recommendations</h2>
+            <div class="rec-names">
+                <span class="rec-chip gold">CabIQ</span>
+                <span class="rec-chip purple">Fleet Genie</span>
+                <span class="rec-chip cyan">Asta</span>
+            </div>
+            <p style="color:#cbd5e1; margin-top:20px;">Intelligence-led · Emotional pull · Long-term equity</p>
+        </div>
+
+        <div class="conclusion">
+            <p class="big-line">This isn't just about a name.</p>
+            <p class="sub-line">It's about the story operators believe about themselves.</p>
+            <p class="sub-line-small">The strongest brands sell transformation, not just tools.</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+    <script>
+        // ─────────────────────────────────────
+        // THREE.JS PARTICLE BACKGROUND
+        // ─────────────────────────────────────
+        (function() {
+            const canvas = document.getElementById('bg-canvas');
+            const renderer = new THREE.WebGLRenderer({ canvas, antialias: true, alpha: true });
+            renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+            renderer.setSize(window.innerWidth, window.innerHeight);
+            const scene = new THREE.Scene();
+            const camera = new THREE.PerspectiveCamera(60, window.innerWidth / window.innerHeight, 0.1, 100);
+            camera.position.z = 32;
+            const particleCount = 500;
+            const positions = new Float32Array(particleCount * 3);
+            const colors = new Float32Array(particleCount * 3);
+            const purpleColor = new THREE.Color('#8b5cf6');
+            const cyanColor = new THREE.Color('#06b6d4');
+            const goldColor = new THREE.Color('#f59e0b');
+            const whiteColor = new THREE.Color('#e2e8f0');
+            for (let i = 0; i < particleCount; i++) {
+                positions[i*3] = (Math.random()-0.5)*55;
+                positions[i*3+1] = (Math.random()-0.5)*50;
+                positions[i*3+2] = (Math.random()-0.5)*35;
+                const mix = Math.random();
+                let color = mix<0.35 ? purpleColor : mix<0.65 ? cyanColor : mix<0.85 ? goldColor : whiteColor;
+                colors[i*3]=color.r; colors[i*3+1]=color.g; colors[i*3+2]=color.b;
+            }
+            const geometry = new THREE.BufferGeometry();
+            geometry.setAttribute('position', new THREE.BufferAttribute(positions,3));
+            geometry.setAttribute('color', new THREE.BufferAttribute(colors,3));
+            const material = new THREE.PointsMaterial({ size:0.13, vertexColors:true, blending:THREE.AdditiveBlending, depthWrite:false, opacity:0.75 });
+            const particles = new THREE.Points(geometry,material);
+            scene.add(particles);
+            let mx=0,my=0,tx=0,ty=0;
+            document.addEventListener('mousemove',e=>{ tx=(e.clientX/window.innerWidth)*2-1; ty=-(e.clientY/window.innerHeight)*2+1; });
+            function animate(){
+                requestAnimationFrame(animate);
+                mx+=(tx-mx)*0.04; my+=(ty-my)*0.04;
+                particles.rotation.x+=0.00025; particles.rotation.y+=0.00035;
+                camera.position.x+=(mx*1.8-camera.position.x)*0.02;
+                camera.position.y+=(my*1.2-camera.position.y)*0.02;
+                camera.lookAt(scene.position);
+                renderer.render(scene,camera);
+            }
+            animate();
+            window.addEventListener('resize',()=>{ renderer.setSize(window.innerWidth,window.innerHeight); camera.aspect=window.innerWidth/window.innerHeight; camera.updateProjectionMatrix(); });
+        })();
+
+        // ─────────────────────────────────────
+        // METRIC DEFINITIONS & EXPLANATIONS
+        // ─────────────────────────────────────
+        const metricExplanations = {
+            'Zero-Context Clarity': '<strong>Zero-Context Clarity</strong><br>How instantly someone understands the industry/business without any additional explanation. Measured by showing the name to 100 people and asking "What does this company do?" <br><br><strong>Why it matters:</strong> High clarity reduces customer acquisition cost and brand education budget.',
+            'Acoustic Differentiation': '<strong>Acoustic Differentiation</strong><br>How distinct the name sounds when spoken aloud versus competitors. Tested via audio-only playback to assess memorability and confusion risk. <br><br><strong>Why it matters:</strong> In voice-search and radio advertising, acoustic uniqueness drives recall.',
+            'Linguistic Scalability': '<strong>Linguistic Scalability</strong><br>The name\'s ability to extend into sub-brands, product lines, or adjacent verticals without losing coherence. Example: "CabIQ" can become "CabIQ Fleet", "CabIQ Pay". <br><br><strong>Why it matters:</strong> Limits future rebranding costs as the company expands.',
+            'Spellability': '<strong>Spellability</strong><br>How easily the average person can spell the name after hearing it once. Tested via dictation tests across age groups. <br><br><strong>Why it matters:</strong> Poor spellability leads to lost web traffic and brand dilution through misspellings.',
+            'Number Psychology': '<strong>Number Psychology</strong><br>The cognitive impact of singular vs plural naming. Singular names (CabIQ) feel like unified platforms; plural names (Swift Cabs) suggest fleets/networks. <br><br><strong>Why it matters:</strong> Shapes perception of company size and structure at a subconscious level.',
+            'Share of Search': '<strong>Share of Search</strong><br>The brand\'s ability to dominate search engine results for its own name without competing against generic terms or other brands. <br><br><strong>Why it matters:</strong> High share of search means lower SEO costs and stronger brand defense.',
+            'Cultural Mapping': '<strong>Cultural Mapping</strong><br>How the name resonates across different cultures, regions, and demographics. Checks for negative connotations, slang meanings, or cultural taboos in major markets. <br><br><strong>Why it matters:</strong> Prevents embarrassing international branding disasters.',
+            'Emotional Prosody': '<strong>Emotional Prosody</strong><br>The emotional tone conveyed by the sound pattern of the name. Hard consonants feel confident/aggressive; soft vowels feel warm/approachable; rising intonation feels intelligent. <br><br><strong>Why it matters:</strong> Sound symbolism affects brand personality perception within 50 milliseconds.',
+            'Trademark Clearance': '<strong>Trademark Clearance</strong><br>The likelihood of successfully registering and defending the name as a trademark. Assesses existing marks, common-law usage, and distinctiveness in the category. <br><br><strong>Why it matters:</strong> Legal vulnerability can wipe out years of brand equity overnight.',
+            'Cross-Language Safety': '<strong>Cross-Language Safety</strong><br>Whether the name remains phonetically consistent and meaning-neutral across major world languages (Spanish, Mandarin, Arabic, etc.). <br><br><strong>Why it matters:</strong> Critical for global expansion without costly rebranding.',
+            'Tonic Stress': '<strong>Tonic Stress</strong><br>Which syllable carries the natural emphasis when spoken. Front-weighted names feel action-oriented; back-weighted names feel elegant; balanced names feel stable. <br><br><strong>Why it matters:</strong> Affects how the name performs in rhythmic contexts like jingles and taglines.',
+            'Cognitive Memorability': '<strong>Cognitive Memorability</strong><br>How easily the name is encoded into long-term memory after limited exposure. Measured via delayed recall tests (24-48 hours after single exposure). <br><br><strong>Why it matters:</strong> High memorability means lower frequency needed for advertising effectiveness.',
+            'Typability': '<strong>Typability</strong><br>The physical ease of typing the name on mobile keyboards, considering keystroke count, special characters, and auto-correct interference. <br><br><strong>Why it matters:</strong> Mobile-first world — every extra keystroke loses potential customers.',
+            'Voice Readiness': '<strong>Voice Readiness</strong><br>How reliably voice assistants (Siri, Alexa, Google) can recognize and process the brand name without confusion. <br><br><strong>Why it matters:</strong> Voice commerce is growing 40% annually; voice-ready names capture this traffic.',
+            'Morphological Neighbors': '<strong>Morphological Neighbors</strong><br>The density of similar-sounding or similar-looking words/brands in the linguistic space. Higher density = higher confusion risk. <br><br><strong>Why it matters:</strong> Crowded neighborhoods lead to brand confusion and legal disputes.',
+            'Semantic Priming': '<strong>Semantic Priming</strong><br>How quickly the name activates relevant mental associations in the target audience\'s mind. Instant priming means the value proposition is encoded in the name itself. <br><br><strong>Why it matters:</strong> Faster semantic priming correlates with higher conversion rates in first encounters.',
+            'Deep Metaphor': '<strong>Deep Metaphor</strong><br>The archetypal story or role the brand name embodies (e.g., The Mastermind, The Liberator, The Craftsman). This is the unconscious narrative the name tells. <br><br><strong>Why it matters:</strong> Brands with clear archetypes build deeper emotional loyalty and higher lifetime value.',
+            'Domain Defense': '<strong>Domain Defense</strong><br>The ability to secure and protect relevant domain names (.com, .ai, .io, .app) and prevent cybersquatting or confusion. <br><br><strong>Why it matters:</strong> Weak domain defense allows competitors to siphon traffic and dilute the brand.',
+            'Logo Symbiosis': '<strong>Logo Symbiosis</strong><br>The natural synergy between the name and potential logo designs. Exceptional symbiosis means the name practically designs itself visually. <br><br><strong>Why it matters:</strong> Strong symbiosis produces more distinctive, ownable visual identities.'
+        };
+
+        // ─────────────────────────────────────
+        // RATING COLOR MAPPER
+        // ─────────────────────────────────────
+        function getRatingClass(text) {
+            const t = text.toLowerCase();
+            if (t.includes('exceptional') || t.includes('flawless') || t.includes('instant') && t.includes('excellent')) return 'rating-excellent';
+            if (t.includes('very high') || t.includes('excellent')) return 'rating-very-high';
+            if (t.includes('high') && !t.includes('very')) return 'rating-high';
+            if (t.includes('good') || t.includes('promising') || t.includes('positive') || t.includes('strong') && !t.includes('very')) return 'rating-good';
+            if (t.includes('moderate') || t.includes('variable') || t.includes('competitive')) return 'rating-moderate';
+            if (t.includes('low') && !t.includes('very')) return 'rating-low';
+            if (t.includes('risk') || t.includes('caution') || t.includes('check')) return 'rating-risk';
+            if (t.includes('challenging') || t.includes('difficult')) return 'rating-challenging';
+            if (t.includes('weak') || t.includes('very low')) return 'rating-weak';
+            if (t.includes('crowded') || t.includes('limited')) return 'rating-crowded';
+            if (t.includes('safe') || t.includes('neutral')) return 'rating-safe';
+            return '';
+        }
+
+        // ─────────────────────────────────────
+        // BRAND DATA - Complete 10 Brands
+        // ─────────────────────────────────────
+        const brandsData = [
+            {
+                name: 'CabIQ', domain: 'CabIQ.io / .ai',
+                tagline: 'Smarter dispatch. Stronger margins.',
+                identity: 'A sharp, intelligent system built for operators who want control.',
+                why: '"IQ" signals intelligence and optimization — instantly positions as premium tech.',
+                insight: 'Appeals to ambitious operators who think in systems and value analytics.',
+                value: 'Perfect for analytics and automation positioning with strong patent potential.',
+                metrics: {
+                    'Zero-Context Clarity': 'Excellent — "Cab" immediately anchors in taxi industry',
+                    'Acoustic Differentiation': 'Strong — Hard "Q" ending is distinctive and memorable',
+                    'Linguistic Scalability': 'Good — Extends to CabIQ Fleet, CabIQ Analytics, CabIQ Pay',
+                    'Spellability': 'Flawless — 5 letters, phonetic precision, impossible to misspell',
+                    'Number Psychology': 'Excellent — Singular, unified, platform-grade perception',
+                    'Share of Search': 'Very High — Unique enough for complete brand search dominance',
+                    'Cultural Mapping': 'Safe — IQ universally positive, no negative connotations globally',
+                    'Emotional Prosody': 'Confident — Rising intonation on "Q" sounds sharp and assured',
+                    'Trademark Clearance': 'Promising — Distinctive combination, low conflict risk',
+                    'Cross-Language Safety': 'Excellent — "Cab" and "IQ" globally understood without translation',
+                    'Tonic Stress': 'Balanced — Equal stress on both syllables, easy to announce',
+                    'Cognitive Memorability': 'Very High — Short, punchy, distinctive pattern for instant recall',
+                    'Typability': 'Excellent — 5 keystrokes, no special characters, mobile-optimized',
+                    'Voice Readiness': 'Excellent — Crystal clear phonetics for all voice assistants',
+                    'Morphological Neighbors': 'Clean — No confusing similar words in any major language',
+                    'Semantic Priming': 'Instant — Immediately signals "smart transportation intelligence"',
+                    'Deep Metaphor': 'The Mastermind — Intelligence as the ultimate competitive advantage',
+                    'Domain Defense': 'Strong — .ai and .io both available, defensible across TLDs',
+                    'Logo Symbiosis': 'Exceptional — "IQ" abstractable into brain/circuit/network marks'
+                }
+            },
+            {
+                name: 'Fleet Genie', domain: 'FleetGenie.ai',
+                tagline: 'Your wish for more bookings? Granted.',
+                identity: 'Effortless and powerful — magic without the mystery.',
+                why: 'Strong emotional hook combining authority (fleet) with ease (genie).',
+                insight: 'Appeals to overwhelmed operators who want automation to feel like magic.',
+                value: 'Automation positioning with strong emotional storytelling and mascot potential.',
+                metrics: {
+                    'Zero-Context Clarity': 'Good — "Fleet" anchors, "Genie" adds emotional wish-fulfillment layer',
+                    'Acoustic Differentiation': 'Strong — Playful yet authoritative contrast stands out',
+                    'Linguistic Scalability': 'Moderate — Best confined to fleet-based services',
+                    'Spellability': 'Good — 10 letters, both common words, intuitive spelling',
+                    'Number Psychology': 'Excellent — Singular personification builds emotional connection',
+                    'Share of Search': 'High — Distinctive enough for organic search dominance',
+                    'Cultural Mapping': 'Positive — "Genie" = wish fulfillment, universal positive appeal',
+                    'Emotional Prosody': 'Warm — Softer "ie" ending creates approachability',
+                    'Trademark Clearance': 'Good — Combination is distinctive, verify "Genie" marks',
+                    'Cross-Language Safety': 'Good — "Genie" widely recognized globally, positive connotations',
+                    'Tonic Stress': 'Front-weighted — "FLEET" carries the authority',
+                    'Cognitive Memorability': 'Very High — Visual and emotional dual encoding aids recall',
+                    'Typability': 'Good — Two common words, intuitive typing flow',
+                    'Voice Readiness': 'Good — Clear phonetics, distinct word separation',
+                    'Morphological Neighbors': 'Clean — Unique combination with no confusing alternatives',
+                    'Semantic Priming': 'Fast — Magic + Control = powerful automation message',
+                    'Deep Metaphor': 'The Liberator — Freedom through effortless, magical power',
+                    'Domain Defense': 'Good — .ai secured, monitor common variations',
+                    'Logo Symbiosis': 'Exceptional — Rich visual territory with lamp/stars/magic motifs'
+                }
+            },
+            {
+                name: 'Asta', domain: 'getasta.ai / .app / .io',
+                tagline: 'Ask. The answer is Asta.',
+                identity: 'Minimal, scalable, and mysterious — a blank canvas for visionaries.',
+                why: 'Flexible and highly brandable with unlimited room to grow beyond taxi.',
+                insight: 'Appeals to visionary founders who want to build far beyond dispatch.',
+                value: 'Long-term brand equity play, unbounded by any single category.',
+                metrics: {
+                    'Zero-Context Clarity': 'Low — Requires significant brand education investment upfront',
+                    'Acoustic Differentiation': 'Strong — Unique sound signature in the market',
+                    'Linguistic Scalability': 'Exceptional — Unbound by any category, infinite expansion possible',
+                    'Spellability': 'Risk — Asta/Astha/Ashta variations possible across regions',
+                    'Number Psychology': 'Excellent — Singular proper-noun strength',
+                    'Share of Search': 'Moderate — May compete with existing "Asta" uses globally',
+                    'Cultural Mapping': 'Caution — Check regional meanings (spear in Sanskrit, name in Nordic)',
+                    'Emotional Prosody': 'Open — Soft vowels create spaciousness and possibility',
+                    'Trademark Clearance': 'Check Thoroughly — Short names often crowded in trademark databases',
+                    'Cross-Language Safety': 'Moderate — Needs per-market cultural validation',
+                    'Tonic Stress': 'Front — "AS" carries the weight, clean pronunciation',
+                    'Cognitive Memorability': 'Moderate — Distinctive but requires repetition for encoding',
+                    'Typability': 'Excellent — 4 keystrokes, fastest possible input',
+                    'Voice Readiness': 'Good — Clear phonetics but may confuse with "Aster"',
+                    'Morphological Neighbors': 'Check — Aster, Astro, Asana in similar naming space',
+                    'Semantic Priming': 'Slow — Requires storytelling to build meaning over time',
+                    'Deep Metaphor': 'The Empire Builder — A name that can become anything',
+                    'Domain Defense': 'Strong — Multiple TLDs secured for brand protection',
+                    'Logo Symbiosis': 'High — Minimal name allows bold, distinctive visual system'
+                }
+            },
+            {
+                name: 'Dispatchly', domain: 'getDispatchly.io / .app',
+                tagline: 'Dispatch your cabs with AI.',
+                identity: 'Clear, operational, and trustworthy — built for the working operator.',
+                why: 'Instant clarity — operators immediately understand the value proposition.',
+                insight: 'Appeals to practical buyers who want reliable tools, not gimmicks.',
+                value: 'B2B conversion focus with zero education cost and keyword adjacency.',
+                metrics: {
+                    'Zero-Context Clarity': 'Exceptional — "Dispatch" is the exact industry keyword',
+                    'Acoustic Differentiation': 'Good — Adverb formation is distinctive in the space',
+                    'Linguistic Scalability': 'Excellent — Dispatch can cover any logistics vertical',
+                    'Spellability': 'Good — 10 letters, phonetic transparency, easy to spell',
+                    'Number Psychology': 'Excellent — Singular, systematic, platform feel',
+                    'Share of Search': 'High — Benefits from industry keyword adjacency',
+                    'Cultural Mapping': 'Safe — "Dispatch" is neutral and professional globally',
+                    'Emotional Prosody': 'Reliable — Steady rhythm inspires trust, no surprises',
+                    'Trademark Clearance': 'Promising — Descriptive + suffix combination is defensible',
+                    'Cross-Language Safety': 'Excellent — "Dispatch" is international logistics term',
+                    'Tonic Stress': 'Back-weighted — "PATCH" carries the action emphasis',
+                    'Cognitive Memorability': 'High — Functional encoding aids practical recall',
+                    'Typability': 'Good — 10 keystrokes, intuitive flow',
+                    'Voice Readiness': 'Excellent — Clearly distinct phonetics for voice assistants',
+                    'Morphological Neighbors': 'Clean — Unique adverb formation with no confusion',
+                    'Semantic Priming': 'Instant — Immediately understood by target audience',
+                    'Deep Metaphor': 'The Craftsman — A better tool for serious, professional work',
+                    'Domain Defense': 'Good — .io and .app secured for brand protection',
+                    'Logo Symbiosis': 'Good — Checkmark, arrow, or pathway marks work naturally'
+                }
+            },
+            {
+                name: 'Cabbie', domain: 'getCabbie.app',
+                tagline: 'The world’s most tireless cabbie.',
+                identity: 'Friendly, human, and warm — the badge of the professional driver.',
+                why: 'Relatable and emotional, reclaims driver identity with pride.',
+                insight: 'Appeals to small operators and owner-drivers who value craft.',
+                value: 'Great chatbot positioning with human-first narrative and approachable tone.',
+                metrics: {
+                    'Zero-Context Clarity': 'Good — "Cabbie" universally understood in English-speaking markets',
+                    'Acoustic Differentiation': 'Strong — Warm, human sound stands out against cold tech names',
+                    'Linguistic Scalability': 'Low — Deeply tied to taxi/persona, limits expansion potential',
+                    'Spellability': 'Good — 6 letters, "ie" ending is common and intuitive',
+                    'Number Psychology': 'Excellent — Singular personification builds deep connection',
+                    'Share of Search': 'Moderate — May compete with generic use of "cabbie" in search',
+                    'Cultural Mapping': 'Variable — Endearing in UK/AUS, potentially dated in some US markets',
+                    'Emotional Prosody': 'Warm — "ie" diminutive creates affection and familiarity',
+                    'Trademark Clearance': 'Challenging — "Cabbie" is a common term, harder to defend legally',
+                    'Cross-Language Safety': 'Limited — English-specific slang, doesn\'t translate well',
+                    'Tonic Stress': 'Front — "CAB" carries the clear meaning',
+                    'Cognitive Memorability': 'High — Emotional encoding is powerful for recall',
+                    'Typability': 'Excellent — 6 keystrokes, common word, fast input',
+                    'Voice Readiness': 'Good — Distinct but may confuse with "cabby/cab be" in voice',
+                    'Morphological Neighbors': 'Crowded — Cab, Cabbie, Cabby variations exist in market',
+                    'Semantic Priming': 'Fast — Instantly warm and human feeling conveyed',
+                    'Deep Metaphor': 'The Professional — Reclaiming driver pride and craft dignity',
+                    'Domain Defense': 'Moderate — .app secured, common word limits TLD options',
+                    'Logo Symbiosis': 'Strong — Human element creates rich visual territory'
+                }
+            },
+            {
+                name: 'FareIQ', domain: 'fareiq.ai / .io',
+                tagline: 'Every cent. Absolutely certain.',
+                identity: 'Revenue-focused and profit-oriented — the operator\'s financial ally.',
+                why: 'Connects directly to pricing mastery and margin protection.',
+                insight: 'Appeals to operators focused on yield and revenue optimization.',
+                value: 'Ideal for pricing optimization features and ROI-driven storytelling.',
+                metrics: {
+                    'Zero-Context Clarity': 'Good — "Fare" narrows domain to pricing/payment space',
+                    'Acoustic Differentiation': 'Strong — Hard "Q" ending same family as CabIQ',
+                    'Linguistic Scalability': 'Low — Confined to pricing/revenue domain',
+                    'Spellability': 'Flawless — 6 letters, phonetic precision',
+                    'Number Psychology': 'Excellent — Singular, unified perception',
+                    'Share of Search': 'High — Unique combination for search dominance',
+                    'Cultural Mapping': 'Safe — "Fare" is neutral, "IQ" universally positive',
+                    'Emotional Prosody': 'Smart — Rising "Q" sounds intelligent and sharp',
+                    'Trademark Clearance': 'Promising — Distinctive combination, good clearance potential',
+                    'Cross-Language Safety': 'Good — "Fare" is English-specific but widely understood',
+                    'Tonic Stress': 'Equal — Balanced two-syllable word',
+                    'Cognitive Memorability': 'High — Short, punchy, "IQ" family recall benefit',
+                    'Typability': 'Excellent — 6 keystrokes, fast input',
+                    'Voice Readiness': 'Excellent — Crystal clear phonetics',
+                    'Morphological Neighbors': 'Clean — CabIQ is sibling, not competitor',
+                    'Semantic Priming': 'Good — Pricing intelligence immediately clear',
+                    'Deep Metaphor': 'The Banker — Financial intelligence for operators',
+                    'Domain Defense': 'Strong — .ai and .io available',
+                    'Logo Symbiosis': 'Good — Can share design system with CabIQ family'
+                }
+            },
+            {
+                name: 'Jiffy Cab', domain: 'jiffycab.app / .ai',
+                tagline: 'Cabs booked in a blink.',
+                identity: 'Fast, responsive, and cheerful — the neighborhood sprinter.',
+                why: 'Instant speed perception baked directly into the name.',
+                insight: 'Appeals in competitive markets where speed wins bookings.',
+                value: 'Great for speed-centric messaging and quick-onboarding positioning.',
+                metrics: {
+                    'Zero-Context Clarity': 'Good — "Jiffy" = fast, "Cab" = taxi, clear message',
+                    'Acoustic Differentiation': 'Good — Friendly, bouncy rhythm stands out from competitors',
+                    'Linguistic Scalability': 'Low — Confined to speed + cab positioning',
+                    'Spellability': 'Risk — Double "f" is a frequent typo source',
+                    'Number Psychology': 'Excellent — Singular, unified brand feel',
+                    'Share of Search': 'Moderate — "Jiffy" used in many existing brand names',
+                    'Cultural Mapping': 'Positive — "Jiffy" is cheerful and approachable across cultures',
+                    'Emotional Prosody': 'Bouncy — Light, quick rhythm matches speed meaning perfectly',
+                    'Trademark Clearance': 'Caution — "Jiffy" heavily trademarked (Jiffy Lube, Jiffy Mix)',
+                    'Cross-Language Safety': 'Moderate — "Jiffy" is English-specific idiom',
+                    'Tonic Stress': 'Front — "JIFF" carries the speed meaning',
+                    'Cognitive Memorability': 'High — Speed association strongly aids recall',
+                    'Typability': 'Moderate — Double "f" causes hesitation in typing',
+                    'Voice Readiness': 'Moderate — "Jiffy" may confuse with "Giffy" in voice recognition',
+                    'Morphological Neighbors': 'Crowded — Jiffy Lube, Jiffy Mix, many others exist',
+                    'Semantic Priming': 'Instant — Speed is immediately understood',
+                    'Deep Metaphor': 'The Sprinter — Speed as the primary brand promise',
+                    'Domain Defense': 'Moderate — Common words, monitor variations needed',
+                    'Logo Symbiosis': 'Good — Speed motifs are rich visual territory'
+                }
+            },
+            {
+                name: 'Go Cab', domain: 'gocab.ai',
+                tagline: "Your fleet's 'go' button.",
+                identity: 'Direct, action-oriented command — simple and powerful.',
+                why: 'Verb-driven urgency creates immediate call-to-action energy.',
+                insight: 'Appeals to operators who value simplicity and directness above all.',
+                value: 'Clear call-to-action brand with strong verb-based marketing angles.',
+                metrics: {
+                    'Zero-Context Clarity': 'High — "Go" + "Cab" is universally understood',
+                    'Acoustic Differentiation': 'Sharp — Short, punchy, commanding sound',
+                    'Linguistic Scalability': 'Moderate — Can extend to Go Fleet, Go Logistics',
+                    'Spellability': 'Flawless — 5 letters total, impossible to misspell',
+                    'Number Psychology': 'Excellent — Singular action word, powerful',
+                    'Share of Search': 'Moderate — "Go" is very common, harder to dominate search',
+                    'Cultural Mapping': 'Safe — Universal action word, globally positive',
+                    'Emotional Prosody': 'Energetic — Command tone inspires immediate action',
+                    'Trademark Clearance': 'Challenging — "Go" + descriptor is very common pattern',
+                    'Cross-Language Safety': 'Good — "Go" and "Cab" widely understood internationally',
+                    'Tonic Stress': 'Front — "GO" carries all the energy',
+                    'Cognitive Memorability': 'Moderate — Simple but potentially forgettable among competitors',
+                    'Typability': 'Excellent — 5 keystrokes total, fastest input possible',
+                    'Voice Readiness': 'Good — Short and clear for voice commands',
+                    'Morphological Neighbors': 'Very Crowded — Gojek, GoCar, GoRide, many others',
+                    'Semantic Priming': 'Instant — Movement and action immediately clear',
+                    'Deep Metaphor': 'The Commander — Direct order to move forward',
+                    'Domain Defense': 'Weak — Common words, domain variations hard to secure',
+                    'Logo Symbiosis': 'Moderate — Simple name limits complex mark potential'
+                }
+            },
+            {
+                name: 'Swift Cabs', domain: 'swiftcabs.ai',
+                tagline: 'Instant intelligence for instant rides.',
+                identity: 'Smooth, fast, professional — modern operator\'s choice.',
+                why: '"Swift" implies premium speed without sacrificing quality.',
+                insight: 'Appeals to operators wanting a modern, professional image upgrade.',
+                value: 'Balanced speed and trust positioning for premium market segments.',
+                metrics: {
+                    'Zero-Context Clarity': 'Excellent — "Swift" + "Cabs" perfectly clear message',
+                    'Acoustic Differentiation': 'Good — Smooth sibilance sounds premium and sleek',
+                    'Linguistic Scalability': 'Low — Confined to taxi/transport vertical',
+                    'Spellability': 'Good — 10 letters, both common words',
+                    'Number Psychology': 'Good — Plural suggests fleet scale and capacity',
+                    'Share of Search': 'Moderate — "Swift" used in many transport brands globally',
+                    'Cultural Mapping': 'Positive — "Swift" is elegant and positive in most cultures',
+                    'Emotional Prosody': 'Sleek — Smooth sound matches premium positioning well',
+                    'Trademark Clearance': 'Caution — Verify against Swift Transportation existing marks',
+                    'Cross-Language Safety': 'Good — "Swift" is positive English word, widely known',
+                    'Tonic Stress': 'Front — "SWIFT" carries the premium feel',
+                    'Cognitive Memorability': 'High — Speed + reliability creates dual encoding benefit',
+                    'Typability': 'Good — 10 keystrokes, standard words, easy flow',
+                    'Voice Readiness': 'Good — Clear phonetics, distinct words',
+                    'Morphological Neighbors': 'Crowded — Swiftly, Swift Transportation nearby',
+                    'Semantic Priming': 'Fast — Speed and reliability immediately understood',
+                    'Deep Metaphor': 'The Glider — Smooth, fast, effortless movement',
+                    'Domain Defense': 'Moderate — Common words require monitoring',
+                    'Logo Symbiosis': 'Good — Bird/swift motifs offer rich visual potential'
+                }
+            },
+            {
+                name: 'Fare AI', domain: 'getfare.ai',
+                tagline: 'Every fare. Exactly right. Every time.',
+                identity: 'Pure tech positioning, no fluff — AI-first brand.',
+                why: 'Direct AI association rides the artificial intelligence wave.',
+                insight: 'Appeals to tech-forward early adopters who want cutting-edge positioning.',
+                value: 'AI trend alignment with strong technology credibility signals.',
+                metrics: {
+                    'Zero-Context Clarity': 'High — "Fare" + "AI" clearly communicates pricing technology',
+                    'Acoustic Differentiation': 'Clean — Modern, tech-forward sound signature',
+                    'Linguistic Scalability': 'Moderate — Can extend to Fare AI Analytics, Fare AI Insights',
+                    'Spellability': 'Flawless — 6 letters, no ambiguity whatsoever',
+                    'Number Psychology': 'Excellent — Singular, tech-focused perception',
+                    'Share of Search': 'Competitive — "AI" is extremely generic, hard to dominate',
+                    'Cultural Mapping': 'Tech-positive — AI carries innovation halo effect',
+                    'Emotional Prosody': 'Neutral — Clean, professional, no emotional baggage',
+                    'Trademark Clearance': 'Difficult — "AI" suffix increasingly common and crowded',
+                    'Cross-Language Safety': 'Excellent — "AI" is globally recognized term everywhere',
+                    'Tonic Stress': 'Equal — Both words share emphasis equally',
+                    'Cognitive Memorability': 'Moderate — Generic structure may blend with other AI brands',
+                    'Typability': 'Excellent — 6 keystrokes, fast and easy',
+                    'Voice Readiness': 'Good — Clear, but "AI" may confuse with "A.I." spelling',
+                    'Morphological Neighbors': 'Very Crowded — Hundreds of "X AI" brand names exist',
+                    'Semantic Priming': 'Fast — Artificial intelligence immediately signaled',
+                    'Deep Metaphor': 'The Brain — Pure computational intelligence',
+                    'Domain Defense': 'Weak — Generic terms, extremely hard to fully protect',
+                    'Logo Symbiosis': 'Moderate — AI motifs are common and harder to differentiate'
+                }
+            }
+        ];
+
+        // ─────────────────────────────────────
+        // RENDER BRANDS
+        // ─────────────────────────────────────
+        function renderBrands() {
+            const container = document.getElementById('brands-container');
+            let html = '';
+
+            brandsData.forEach((brand, index) => {
+                const metrics = brand.metrics;
+                const metricKeys = Object.keys(metrics);
+
+                let metricsHTML = '';
+                metricKeys.forEach(key => {
+                    const value = metrics[key];
+                    const ratingClass = getRatingClass(value);
+                    const explanation = metricExplanations[key] || `<strong>${key}</strong><br>Detailed diagnostic assessment for this metric.`;
+                    metricsHTML += `
+                        <div class="metric-chip">
+                            <div class="metric-name">${key}</div>
+                            <div class="metric-value ${ratingClass}">${value}</div>
+                            <div class="tooltip-hover">${explanation}</div>
+                        </div>`;
+                });
+
+                html += `
+                <div class="brand-section" id="brand-${index}">
+                    <h2>${brand.name} <span class="domain-hint">${brand.domain}</span></h2>
+                    <div class="brand-card">
+                        <div class="card-glow"></div>
+                        <div class="quick-meta">
+                            <div class="meta-pill tagline-pill">🎯 ${brand.tagline}</div>
+                            <div class="meta-pill identity-pill">✨ ${brand.identity}</div>
+                        </div>
+                        <div class="insight-block">
+                            <div class="insight-item">
+                                <div class="insight-label">💡 Why It Works</div>
+                                <div class="insight-value">${brand.why}</div>
+                            </div>
+                            <div class="insight-item">
+                                <div class="insight-label">🔍 Resonance Insight</div>
+                                <div class="insight-value">${brand.insight}</div>
+                            </div>
+                            <div class="insight-item">
+                                <div class="insight-label">💎 Added Value Angle</div>
+                                <div class="insight-value">${brand.value}</div>
+                            </div>
+                        </div>
+                        <div class="metrics-toggle" onclick="toggleMetrics(this)">
+                            <span>📊 19-Point Diagnostic Matrix</span>
+                            <span class="arrow">▾</span>
+                        </div>
+                        <div class="metrics-grid">
+                            ${metricsHTML}
+                        </div>
+                    </div>
+                </div>`;
+            });
+
+            container.innerHTML = html;
+        }
+
+        // ─────────────────────────────────────
+        // TOGGLE METRICS
+        // ─────────────────────────────────────
+        function toggleMetrics(toggleEl) {
+            toggleEl.classList.toggle('open');
+            const grid = toggleEl.nextElementSibling;
+            grid.classList.toggle('expanded');
+        }
+
+        // Initialize
+        renderBrands();
+
+        // ─────────────────────────────────────
+        // SCROLL REVEAL (Intersection Observer)
+        // ─────────────────────────────────────
+        const observerOptions = {
+            threshold: 0.08,
+            rootMargin: '0px 0px -40px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.brand-card, .intro-section, .summary-section, .recommendation, .conclusion').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1)';
+            observer.observe(el);
+        });
+
+        // Trigger initial visibility
+        setTimeout(() => {
+            document.querySelectorAll('.brand-card, .intro-section, .summary-section, .recommendation, .conclusion').forEach(el => {
+                const rect = el.getBoundingClientRect();
+                if (rect.top < window.innerHeight) {
+                    el.style.opacity = '1';
+                    el.style.transform = 'translateY(0)';
+                }
+            });
+        }, 250);
+    </script>
+</body>
+</html>
